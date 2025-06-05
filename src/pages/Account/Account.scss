@@ -1,0 +1,189 @@
+@import '../../styles/variables';
+
+.account-page {
+  padding: 40px 0;
+}
+
+.account-container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+}
+
+.account-tabs {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 30px;
+}
+
+.tab-button {
+  padding: 12px 25px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    color: $primary-color;
+  }
+
+  &.active {
+    color: $primary-color;
+    border-bottom-color: $primary-color;
+  }
+}
+
+.account-content {
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+}
+
+.no-orders {
+  text-align: center;
+  padding: 50px 0;
+  font-size: 16px;
+  color: $gray-color;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.order-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .order-id {
+    font-weight: 500;
+  }
+
+  .order-date {
+    font-size: 14px;
+    color: $gray-color;
+  }
+}
+
+.order-total {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+
+  .status {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    &.delivered {
+      background-color: #e6f7ee;
+      color: #00a76f;
+    }
+
+    &.shipped {
+      background-color: #e8f4fd;
+      color: #006fbb;
+    }
+
+    &.processing {
+      background-color: #fff7e6;
+      color: #ff9500;
+    }
+  }
+}
+
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+
+  .item-name {
+    flex: 1;
+  }
+
+  .item-quantity {
+    width: 80px;
+    text-align: center;
+  }
+
+  .item-price {
+    width: 80px;
+    text-align: right;
+  }
+}
+
+.view-order {
+  background: none;
+  border: none;
+  color: $primary-color;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+}
+
+.account-form {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  input {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+}
+
+.save-changes {
+  align-self: flex-start;
+  padding: 12px 30px;
+  margin-top: 10px;
+}

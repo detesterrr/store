@@ -1,0 +1,53 @@
+@import '../../styles/variables';
+
+.catalog-page {
+  padding: 40px 0;
+}
+
+.catalog-header {
+  margin-bottom: 40px;
+
+  h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+}
+
+.catalog-controls {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.filter-control,
+.sort-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  label {
+    font-weight: 500;
+  }
+
+  select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+  }
+}
+
+.no-products {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 50px 0;
+  font-size: 18px;
+  color: $gray-color;
+}
+
+.loading {
+  text-align: center;
+  padding: 100px 0;
+  font-size: 18px;
+}

@@ -1,0 +1,168 @@
+@import '../../styles/variables';
+
+.cart-page {
+  padding: 40px 0;
+}
+
+.cart-container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 50px 0;
+
+  p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+}
+
+.continue-shopping {
+  display: inline-block;
+  margin-top: 20px;
+  color: $primary-color;
+  text-decoration: underline;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.cart-content {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 40px;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 100px 1fr 120px 80px 80px;
+  gap: 20px;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+
+  .item-image {
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+  }
+
+  .item-name {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .item-size {
+    font-size: 14px;
+    color: $gray-color;
+    margin-bottom: 5px;
+  }
+
+  .item-price {
+    font-weight: 500;
+  }
+}
+
+.item-quantity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .quantity-button {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    color: $primary-color;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #e0e0e0;
+    }
+  }
+}
+
+.item-total {
+  font-weight: bold;
+}
+
+.remove-item {
+  background: none;
+  border: none;
+  color: $gray-color;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.cart-summary {
+  background-color: #f9f9f9;
+  padding: 25px;
+  border-radius: 8px;
+  height: fit-content;
+
+  h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  &.total {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    font-weight: bold;
+    font-size: 18px;
+  }
+}
+
+.checkout-button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: $primary-color;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
