@@ -1,125 +1,86 @@
-import { useState } from 'react';
+import { useCart } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 import './Cart.scss';
 
+const CartPage = () => {
+  const {
+    cartItems,
+    removeFromCart,
+    updateQuantity,
+    totalItems,
+    totalPrice
+  } = useCart();
 
-const Cart = () => {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: 'Basic White T-Shirt',
-      price: 29.99,
-      size: 'M',
-      quantity: 0,
-      image: 'https://optim.tildacdn.com/stor6538-3935-4562-a464-353865333438/-/format/webp/93988918.png.webp'
-    },
-    {
-      id: 2,
-      name: 'Black Denim Jeans',
-      price: 59.99,
-      size: '32',
-      quantity: 0,
-      image: 'https://via.placeholder.com/100x100?text=Jeans'
-    }
-  ]);
-
-  const updateQuantity = (id, newQuantity) => {
-    if (newQuantity < 1) return;
-    setCartItems(cartItems.map(item => 
-      item.id === id ? { ...item, quantity: newQuantity } : item
-    ));
-  };
-
-  const removeItem = (id) => {
-    setCartItems(cartItems.filter(item => item.id !== id));
-  };
-
-  const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const shipping = subtotal > 100 ? 0 : 9.99;
-  const total = subtotal + shipping;
+  if (cartItems.length === 0) {
+    return (
+      <div className="empty-cart">
+        <h1>Ваша корзина пуста</h1>
+        <Link to="/catalog" className="continue-shopping">
+          Вернуться к покупкам
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="cart-page">
-      <div className="cart-container">
-        <h1>Твоя корзина</h1>
-        
-        {cartItems.length === 0 ? (
-          <div className="empty-cart">
-            <p>Твоя корзина пуста</p>
-            <Link to="/catalog" className="continue-shopping">Перейти в каталог</Link>
-          </div>
-        ) : (
-          <div className="cart-content">
-            <div className="cart-items">
-              {cartItems.map(item => (
-                <div key={item.id} className="cart-item">
-                  <div className="item-image">
-                    <img src={item.image} alt={item.name} />
-                  </div>
-                  
-                  <div className="item-details">
-                    <h3 className="item-name">{item.name}</h3>
-                    <p className="item-size">Size: {item.size}</p>
-                    <p className="item-price">${item.price.toFixed(2)}</p>
-                  </div>
-                  
-                  <div className="item-quantity">
-                    <button 
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      className="quantity-button"
-                    >
-                      -
-                    </button>
-                    <span>{item.quantity}</span>
-                    <button 
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="quantity-button"
-                    >
-                      +
-                    </button>
-                  </div>
-                  
-                  <div className="item-total">
-                    ${(item.price * item.quantity).toFixed(2)}
-                  </div>
-                  
-                  <button 
-                    onClick={() => removeItem(item.id)}
-                    className="remove-item"
-                  >
-                    Удалить
-                  </button>
-                </div>
-              ))}
+      <h1>Ваша корзина ({totalItems})</h1>
+      
+      <div className="cart-items">
+        {cartItems.map(item => (
+          <div key={`${item.id}-${item.size}`} className="cart-item">
+            <img 
+              src={item.image} 
+              alt={item.name}
+              onError={(e) => {
+                e.target.src = '/images/placeholder.jpg';
+              }}
+            />
+            
+            <div className="item-info">
+              <h3>{item.name}</h3>
+              <p>Размер: {item.size}</p>
+              <p>Цена: {item.price.toFixed(2)} ₽</p>
+              
+              <div className="quantity-control">
+                <button
+                  onClick={() => updateQuantity(item.id, item.size, item.quantity - 1)}
+                  disabled={item.quantity <= 1}
+                >
+                  -
+                </button>
+                <span>{item.quantity}</span>
+                <button
+                  onClick={() => updateQuantity(item.id, item.size, item.quantity + 1)}
+                >
+                  +
+                </button>
+              </div>
             </div>
             
-            <div className="cart-summary">
-              <h2>Общая суммма</h2>
-              
-              <div className="summary-row">
-                <span>Стоимость</span>
-                <span>${subtotal.toFixed(2)}</span>
-              </div>
-              
-              <div className="summary-row">
-                <span>Доставка</span>
-                <span>${shipping.toFixed(2)}</span>
-              </div>
-              
-              <div className="summary-row total">
-                <span>Всего</span>
-                <span>${total.toFixed(2)}</span>
-              </div>
-              
-              <button className="checkout-button">Оформить заказ</button>
-              
-              <Link to="/catalog" className="continue-shopping">Продолжить покупки</Link>
+            <div className="item-total">
+              {(item.price * item.quantity).toFixed(2)} ₽
             </div>
+            
+            <button
+              className="remove-btn"
+              onClick={() => removeFromCart(item.id, item.size)}
+            >
+              ×
+            </button>
           </div>
-        )}
+        ))}
+      </div>
+      
+      <div className="cart-summary">
+        <h2>Итого: {totalPrice.toFixed(2)} ₽</h2>
+        <button className="checkout-btn">Оформить заказ</button>
+        <Link to="/catalog" className="continue-shopping">
+          Продолжить покупки
+        </Link>
       </div>
     </div>
   );
 };
 
-export default Cart;
+export default CartPage;
