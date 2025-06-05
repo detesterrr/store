@@ -6,18 +6,16 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-container">
-        <Link to="/" className="logo">BLAENZAIGA</Link>
-        
+      <Link to="/" className="logo-link">
+          <h1 className="logo">BLAENZAIGA</h1>
+        </Link>
         <nav className="nav">
-          <ul className="nav-list">
-            <li className="nav-item">
-              <Link to="/catalog" className="nav-link">Каталог</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/account" className="nav-link">Аккаунт</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/cart" className="nav-link cart-link">
+          <ul className="nav-links">
+            <li><Link to="/catalog">Каталог</Link></li>
+            <li><Link to="/account">Аккаунт</Link></li>
+            <li><Link to="/add-product" className="add-product-link">Добавить товар</Link></li>
+            <li>
+              <Link to="/cart" className="cart-link">
                 <FiShoppingCart className="cart-icon" />
                 <span className="cart-count">0</span>
               </Link>

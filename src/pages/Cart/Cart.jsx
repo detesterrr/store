@@ -10,7 +10,7 @@ const Cart = () => {
       name: 'Basic White T-Shirt',
       price: 29.99,
       size: 'M',
-      quantity: 1,
+      quantity: 0,
       image: 'https://optim.tildacdn.com/stor6538-3935-4562-a464-353865333438/-/format/webp/93988918.png.webp'
     },
     {
@@ -18,7 +18,7 @@ const Cart = () => {
       name: 'Black Denim Jeans',
       price: 59.99,
       size: '32',
-      quantity: 1,
+      quantity: 0,
       image: 'https://via.placeholder.com/100x100?text=Jeans'
     }
   ]);
@@ -41,12 +41,12 @@ const Cart = () => {
   return (
     <div className="cart-page">
       <div className="cart-container">
-        <h1>Your Shopping Cart</h1>
+        <h1>Твоя корзина</h1>
         
         {cartItems.length === 0 ? (
           <div className="empty-cart">
-            <p>Your cart is empty</p>
-            <Link to="/catalog" className="continue-shopping">Continue Shopping</Link>
+            <p>Твоя корзина пуста</p>
+            <Link to="/catalog" className="continue-shopping">Перейти в каталог</Link>
           </div>
         ) : (
           <div className="cart-content">
@@ -87,33 +87,33 @@ const Cart = () => {
                     onClick={() => removeItem(item.id)}
                     className="remove-item"
                   >
-                    Remove
+                    Удалить
                   </button>
                 </div>
               ))}
             </div>
             
             <div className="cart-summary">
-              <h2>Order Summary</h2>
+              <h2>Общая суммма</h2>
               
               <div className="summary-row">
-                <span>Subtotal</span>
+                <span>Стоимость</span>
                 <span>${subtotal.toFixed(2)}</span>
               </div>
               
               <div className="summary-row">
-                <span>Shipping</span>a
+                <span>Доставка</span>
                 <span>${shipping.toFixed(2)}</span>
               </div>
               
               <div className="summary-row total">
-                <span>Total</span>
+                <span>Всего</span>
                 <span>${total.toFixed(2)}</span>
               </div>
               
-              <button className="checkout-button">Proceed to Checkout</button>
+              <button className="checkout-button">Оформить заказ</button>
               
-              <Link to="/catalog" className="continue-shopping">Continue Shopping</Link>
+              <Link to="/catalog" className="continue-shopping">Продолжить покупки</Link>
             </div>
           </div>
         )}

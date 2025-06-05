@@ -6,6 +6,9 @@ import Catalog from './pages/Catalog/Catalog';
 import Product from './pages/Product/Product';
 import Cart from './pages/Cart/Cart';
 import Account from './pages/Account/Account';
+import AddProduct from './pages/AddProduct/AddProduct';
+import EditProduct from './pages/EditProduct/EditProduct';
+import ProductDetails from './pages/ProductDetails/ProductDetails';
 
 function App() {
   return (
@@ -18,6 +21,9 @@ function App() {
           <Route path="/product/:id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/add-product" element={<AddProduct />} />
+          <Route path="/edit-product/:id" element={<EditProduct />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
       </main>
       <Footer />

@@ -48,26 +48,26 @@ const Catalog = () => {
   return (
     <div className="catalog-page">
       <div className="catalog-header">
-        <h1>Our Collection</h1>
+        <h1>Вся коллекция</h1>
         
         <div className="catalog-controls">
           <div className="filter-control">
-            <label htmlFor="category-filter">Filter:</label>
+            <label htmlFor="category-filter">Фильтры:</label>
             <select 
               id="category-filter" 
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
             >
-              <option value="all">All Categories</option>
-              <option value="tops">Tops</option>
-              <option value="bottoms">Bottoms</option>
-              <option value="dresses">Dresses</option>
-              <option value="outerwear">Outerwear</option>
+              <option value="all">Все категории</option>
+              <option value="tops">Верх</option>
+              <option value="bottoms">Низ</option>
+              <option value="dresses">Юбки</option>
+              <option value="outerwear">Верхняя одежда</option>
             </select>
           </div>
           
           <div className="sort-control">
-            <label htmlFor="sort">Sort by:</label>
+            <label htmlFor="sort">Сортировать по:</label>
             <select 
               id="sort" 
               value={sort}

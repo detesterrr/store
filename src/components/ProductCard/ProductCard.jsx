@@ -7,11 +7,11 @@ const ProductCard = ({ product }) => {
       <Link to={`/product/${product.id}`} className="product-link">
         <div className="product-image-container">
           <img 
-            src={product.image} 
+            src={product.image || '/images/placeholder.jpg'} 
             alt={product.name}
             className="product-image"
             onError={(e) => {
-              e.target.src = 'https://via.placeholder.com/300x400?text=No+Image';
+              e.target.src = '/images/placeholder.jpg';
               e.target.onerror = null;
             }}
           />

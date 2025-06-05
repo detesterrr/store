@@ -32,14 +32,14 @@ const Home = () => {
         <div className="hero-content">
           <h1>Новая коллекция 2025</h1>
           <p>Откройте для себя последний тренд моды</p>
-          <button className="shop-now">Купить сейчас</button>
+          <a className="shop-now" href="/catalog">КУПИТЬ СЕЙЧАС</a>
         </div>
       </section>
 
       <section className="featured-products">
         <div className="section-header">
-          <h2>Featured Products</h2>
-          <a href="/catalog" className="view-all">View All</a>
+          <h2>Рекомендуемые продукты</h2>
+          <a href="/catalog" className="view-all">Показать всё</a>
         </div>
         
         <div className="products-grid">
@@ -51,9 +51,9 @@ const Home = () => {
 
       <section className="banner">
         <div className="banner-content">
-          <h2>Summer Sale</h2>
-          <p>Up to 50% off selected items</p>
-          <button className="shop-sale">Shop Sale</button>
+          <h2>Летняя распродажа</h2>
+          <p>Скидка до 50% на выбранные товары</p>
+          <button className="shop-sale" href="/catalog">КУПИТЬ СЕЙЧАС</button>
         </div>
       </section>
     </div>
