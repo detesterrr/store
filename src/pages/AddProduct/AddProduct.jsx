@@ -39,6 +39,10 @@ const AddProduct = () => {
           featured: false
         })
       });
+      
+      if (response.ok) {
+        navigate('/catalog');
+      }
 
       if (!response.ok) {
         throw new Error('Ошибка при добавлении товара');
@@ -46,7 +50,7 @@ const AddProduct = () => {
 
       const data = await response.json();
       console.log('Товар добавлен:', data);
-      navigate('/catalog'); // Перенаправляем в каталог после успешного добавления
+      navigate('/catalog');
     } catch (err) {
       setError(err.message);
       console.error('Ошибка:', err);

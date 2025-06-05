@@ -39,8 +39,7 @@ const Product = () => {
       return;
     }
     
-    // Here you would typically add to cart logic
-    alert(`Added ${quantity} ${product.name} (Size: ${selectedSize}) to cart`);
+    alert(`${quantity} ${product.name} размера: ${selectedSize} добавлено в корзину`);
   };
 
   if (loading) {
@@ -51,7 +50,7 @@ const Product = () => {
     return (
       <div className="error">
         <p>{error}</p>
-        <button onClick={() => navigate('/catalog')}>Back to Catalog</button>
+        <button onClick={() => navigate('/catalog')}>Вернуться в каталог</button>
       </div>
     );
   }
@@ -81,7 +80,7 @@ const Product = () => {
           
           {product.sizes && product.sizes.length > 0 && (
             <div className="size-selector">
-              <h3>Size</h3>
+              <h3>Размер</h3>
               <div className="size-options">
                 {product.sizes.map(size => (
                   <button
@@ -97,7 +96,7 @@ const Product = () => {
           )}
           
           <div className="quantity-selector">
-            <h3>Quantity</h3>
+            <h3>Количесво</h3>
             <div className="quantity-controls">
               <button 
                 onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
@@ -114,7 +113,7 @@ const Product = () => {
             className="add-to-cart-button"
             onClick={handleAddToCart}
           >
-            Add to Cart
+            В корзину
           </button>
         </div>
       </div>

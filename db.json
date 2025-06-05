@@ -1,0 +1,25 @@
+{
+  "products": [
+    {
+      "id": "72e1",
+      "name": "гнида",
+      "price": 2030,
+      "description": "очень супер круто",
+      "image": "https://optim.tildacdn.com/stor3739-6464-4630-a365-386361313237/-/format/webp/53591478.png.webp",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false
+    },
+    {
+      "id": 1,
+      "name": "Футболка",
+      "price": 1990,
+      "sizes": ["S", "M", "L"],
+      "image": "/images/tshirt.jpg"
+    }
+  ]
+}

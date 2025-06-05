@@ -9,9 +9,12 @@ import Account from './pages/Account/Account';
 import AddProduct from './pages/AddProduct/AddProduct';
 import EditProduct from './pages/EditProduct/EditProduct';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
+import { CartProvider } from './context/CartContext';
+
 
 function App() {
   return (
+    <CartProvider>
     <BrowserRouter>
       <Header />
       <main className="container">
@@ -28,6 +31,7 @@ function App() {
       </main>
       <Footer />
     </BrowserRouter>
+    </CartProvider>
   );
 }
 
