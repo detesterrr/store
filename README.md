@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+EADME: Интернет-магазин одежды
+Описание проекта
+Этот проект представляет собой интернет-магазин одежды с следующими возможностями:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Просмотр каталога товаров
 
-## Available Scripts
+Детальная страница товара
 
-In the project directory, you can run:
+Корзина покупок
 
-### `npm start`
+Редактирование товаров (для администраторов)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Адаптивный дизайн для мобильных устройств и десктопов
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Технологии
+Frontend: React, React Router, SCSS
 
-### `npm test`
+Backend: JSON Server (для имитации API)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+State Management: Context API
 
-### `npm run build`
+Стилизация: SCSS с mobile-first подходом
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Установка и запуск
+Предварительные требования
+Node.js (версия 14 или выше)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Инструкции по установке
+Клонируйте репозиторий:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+bash
+git clone https://github.com/ваш-username/интернет-магазин.git
+cd интернет-магазин
+Установите зависимости:
 
-### `npm run eject`
+bash
+npm install
+Установите JSON Server глобально (если еще не установлен):
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+bash
+npm install -g json-server
+Запуск проекта
+Запустите сервер (из папки проекта):
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+bash
+json-server --watch db.json --port 3001
+В отдельном терминале запустите фронтенд:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+bash
+npm start
+# или
+Приложение будет доступно по адресу: http://localhost:3000
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Структура проекта
+text
+src/
+├── components/       # Компоненты приложения
+├── context/          # Контексты (корзина и т.д.)
+├── pages/            # Страницы приложения
+├── scss/             # Глобальные стили
+├── App.js            # Главный компонент
+└── index.js          # Точка входа
 
-## Learn More
+Доступные скрипты
+npm start - Запуск приложения в development режиме
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+npm run build - Сборка production версии
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+npm test - Запуск тестов
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+npm run eject - Извлечение конфигурации (необратимо)

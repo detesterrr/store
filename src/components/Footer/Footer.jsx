@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Footer.scss';
 
 const Footer = () => {
@@ -12,17 +13,27 @@ const Footer = () => {
         <div className="footer-section">
           <h4 className="footer-subtitle">Ссылки</h4>
           <ul className="footer-links">
-            <li><a href="/">Главная</a></li>
-            <li><a href="/catalog">Каталог</a></li>
-            <li><a href="/account">Аккаунт</a></li>
-            <li><a href="/cart">Корзина</a></li>
+            <li><Link to="/">Главная</Link></li>
+            <li><Link to="/catalog">Каталог</Link></li>
+            <li><Link to="/account">Аккаунт</Link></li>
+            <li><Link to="/cart">Корзина</Link></li>
           </ul>
         </div>
         
         <div className="footer-section">
           <h4 className="footer-subtitle">Контакты</h4>
-          <p>Email: info@stylehub.com</p>
-          <p>Телефон: +1 (234) 567-8900</p>
+          <ul className="footer-contacts">
+            <li>
+              <a href="mailto:info@blaenzaiga.com">
+                <span className="contact-icon">✉</span> info@blaenzaiga.com
+              </a>
+            </li>
+            <li>
+              <a href="tel:+12345678900">
+                <span className="contact-icon">📞</span> +1 (234) 567-8900
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
       

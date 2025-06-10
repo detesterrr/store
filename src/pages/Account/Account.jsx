@@ -1,131 +1,177 @@
+import React, { useState, useEffect } from 'react';
+import { useOrders } from '../../context/OrderContext';
 import './Account.scss';
-import { useState } from 'react';
 
 const Account = () => {
-  const [activeTab, setActiveTab] = useState('orders');
-  const [orders, setOrders] = useState([
-    {
-      id: 'ORD-12345',
-      date: '2023-05-15',
-      total: 89.98,
-      status: 'Delivered',
-      items: [
-        { name: 'Basic White T-Shirt', quantity: 1, price: 29.99 },
-        { name: 'Black Denim Jeans', quantity: 1, price: 59.99 }
-      ]
-    },
-    {
-      id: 'ORD-12346',
-      date: '2023-06-01',
-      total: 29.99,
-      status: 'Shipped',
-      items: [
-        { name: 'Basic White T-Shirt', quantity: 1, price: 29.99 }
-      ]
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem('user');
+    return savedUser ? JSON.parse(savedUser) : {
+      name: 'Иван Иванов',
+      email: 'ivan@example.com',
+      phone: '+7 (123) 456-78-90',
+      address: 'ул. Примерная, д. 10, кв. 25',
+    };
+  });
+
+  const [isEditing, setIsEditing] = useState(false);
+  const { orders, removeOrder } = useOrders();
+
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(user));
+  }, [user]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUser(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsEditing(false);
+  };
+
+  const handleDeleteOrder = (orderId) => {
+    if (window.confirm('Вы уверены, что хотите удалить этот заказ?')) {
+      removeOrder(orderId);
     }
-  ]);
+  };
 
   return (
-    <div className="account-page">
-      <div className="account-container">
-        <h1>My Account</h1>
-        
-        <div className="account-tabs">
+    <div className="account-page mobile-account">
+      <div className="account-header mobile-header">
+        <h1>Мой аккаунт</h1>
+        {!isEditing && (
           <button 
-            className={`tab-button ${activeTab === 'orders' ? 'active' : ''}`}
-            onClick={() => setActiveTab('orders')}
+            className="edit-button"
+            onClick={() => setIsEditing(true)}
           >
-            My Orders
+            Редактировать
           </button>
-          <button 
-            className={`tab-button ${activeTab === 'details' ? 'active' : ''}`}
-            onClick={() => setActiveTab('details')}
-          >
-            Account Details
-          </button>
-        </div>
-        
-        <div className="account-content">
-          {activeTab === 'orders' ? (
-            <div className="orders-section">
-              <h2>Order History</h2>
-              
-              {orders.length === 0 ? (
-                <p className="no-orders">You haven't placed any orders yet.</p>
-              ) : (
-                <div className="orders-list">
-                  {orders.map(order => (
-                    <div key={order.id} className="order-card">
-                      <div className="order-header">
-                        <div className="order-info">
-                          <span className="order-id">Order #{order.id}</span>
-                          <span className="order-date">Placed on {order.date}</span>
-                        </div>
-                        <div className="order-total">
-                          <span>Total: ${order.total.toFixed(2)}</span>
-                          <span className={`status ${order.status.toLowerCase()}`}>{order.status}</span>
-                        </div>
+        )}
+      </div>
+
+      <div className="account-content mobile-content">
+        {isEditing ? (
+          <form onSubmit={handleSubmit} className="account-form">
+            <div className="form-group">
+              <label>Имя</label>
+              <input
+                type="text"
+                name="name"
+                value={user.name}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                value={user.email}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Телефон</label>
+              <input
+                type="tel"
+                name="phone"
+                value={user.phone}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Адрес</label>
+              <textarea
+                name="address"
+                value={user.address}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-actions">
+              <button type="submit" className="save-button">
+                Сохранить
+              </button>
+              <button 
+                type="button" 
+                className="cancel-button"
+                onClick={() => setIsEditing(false)}
+              >
+                Отмена
+              </button>
+            </div>
+          </form>
+        ) : (
+          <div className="account-info">
+            <div className="info-item">
+              <span className="label">Имя:</span>
+              <span className="value">{user.name}</span>
+            </div>
+            <div className="info-item">
+              <span className="label">Email:</span>
+              <span className="value">{user.email}</span>
+            </div>
+            <div className="info-item">
+              <span className="label">Телефон:</span>
+              <span className="value">{user.phone}</span>
+            </div>
+            <div className="info-item">
+              <span className="label">Адрес:</span>
+              <span className="value">{user.address}</span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="account-orders mobile-orders">
+        <h2>Мои заказы</h2>
+        <div className="orders-list">
+          {orders.length > 0 ? (
+            orders.map(order => (
+              <div key={order.id} className="order-item">
+                <div className="order-header">
+                  <span className="order-id">Заказ #{order.id}</span>
+                  <span className="order-date">{order.date}</span>
+                  <span className={`order-status ${order.status.toLowerCase()}`}>
+                    {order.status}
+                  </span>
+                  <button 
+                    className="delete-order-button"
+                    onClick={() => handleDeleteOrder(order.id)}
+                    title="Удалить заказ"
+                  >
+                    ×
+                  </button>
+                </div>
+                <div className="order-items">
+                  {order.items.map(item => (
+                    <div key={`${order.id}-${item.id}`} className="order-product">
+                      <img src={item.image} alt={item.name} />
+                      <div className="product-info">
+                        <h4>{item.name}</h4>
+                        <p>{item.quantity} × {item.price.toLocaleString()} ₽</p>
+                        {item.size && <p>Размер: {item.size}</p>}
                       </div>
-                      
-                      <div className="order-items">
-                        {order.items.map((item, index) => (
-                          <div key={index} className="order-item">
-                            <span className="item-name">{item.name}</span>
-                            <span className="item-quantity">Qty: {item.quantity}</span>
-                            <span className="item-price">${item.price.toFixed(2)}</span>
-                          </div>
-                        ))}
-                      </div>
-                      
-                      <button className="view-order">View Order Details</button>
                     </div>
                   ))}
                 </div>
-              )}
-            </div>
+                <div className="order-footer">
+                  <div className="order-total">
+                    Итого: {order.total.toLocaleString()} ₽
+                  </div>
+                </div>
+              </div>
+            ))
           ) : (
-            <div className="details-section">
-              <h2>Account Details</h2>
-              
-              <form className="account-form">
-                <div className="form-group">
-                  <label htmlFor="firstName">First Name</label>
-                  <input 
-                    type="text" 
-                    id="firstName" 
-                    defaultValue="John" 
-                  />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="lastName">Last Name</label>
-                  <input 
-                    type="text" 
-                    id="lastName" 
-                    defaultValue="Doe" 
-                  />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="email">Email Address</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    defaultValue="john.doe@example.com" 
-                  />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="phone">Phone Number</label>
-                  <input 
-                    type="tel" 
-                    id="phone" 
-                    defaultValue="+1 (234) 567-8900" 
-                  />
-                </div>
-                
-                <button type="submit" className="save-changes">Save Changes</button>
-              </form>
+            <div className="no-orders">
+              <p>У вас пока нет заказов</p>
+              <a href="/catalog" className="browse-products">
+                Перейти в каталог
+              </a>
             </div>
           )}
         </div>

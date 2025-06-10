@@ -1,23 +1,53 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FiShoppingCart, FiMenu, FiX } from 'react-icons/fi';
+import { useCart } from '../../context/CartContext';
 import './Header.scss';
-import { FiShoppingCart } from 'react-icons/fi';
 
 const Header = () => {
+  const { cartItems } = useCart();
+  const [menuOpen, setMenuOpen] = useState(false);
+  
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <header className="header">
       <div className="header-container">
-      <Link to="/" className="logo-link">
+        <Link to="/" className="logo-link">
           <h1 className="logo">BLAENZAIGA</h1>
         </Link>
-        <nav className="nav">
+
+        {/* Кнопка мобильного меню */}
+        <button 
+          className="mobile-menu-toggle" 
+          onClick={toggleMenu}
+          aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
+        >
+          {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+        </button>
+
+        <nav className={`nav ${menuOpen ? 'active' : ''}`}>
           <ul className="nav-links">
-            <li><Link to="/catalog">Каталог</Link></li>
-            <li><Link to="/account">Аккаунт</Link></li>
-            <li><Link to="/add-product" className="add-product-link">Добавить товар</Link></li>
             <li>
-              <Link to="/cart" className="cart-link">
+              <Link to="/catalog" onClick={() => setMenuOpen(false)}>Каталог</Link>
+            </li>
+            <li>
+              <Link to="/account" onClick={() => setMenuOpen(false)}>Аккаунт</Link>
+            </li>
+            <li>
+              <Link 
+                to="/cart" 
+                className="cart-link"
+                onClick={() => setMenuOpen(false)}
+              >
                 <FiShoppingCart className="cart-icon" />
-                <span className="cart-count">0</span>
+                {totalItems > 0 && (
+                  <span className="cart-count">{totalItems}</span>
+                )}
               </Link>
             </li>
           </ul>

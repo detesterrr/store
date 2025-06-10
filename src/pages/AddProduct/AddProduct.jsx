@@ -8,11 +8,15 @@ const AddProduct = () => {
     price: '',
     description: '',
     image: '',
-    sizes: ['S', 'M', 'L', 'XL']
+    sizes: ['S', 'M', 'L', 'XL'],
+    category: '',
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
   const navigate = useNavigate();
+
+  const categories = ['Верх', 'Низ', 'Аксессуары', 'Верхняя одежда'];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,10 +26,24 @@ const AddProduct = () => {
     });
   };
 
+  const handleCategorySelect = (category) => {
+    setFormData({
+      ...formData,
+      category
+    });
+    setShowCategoryDropdown(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
+
+    if (!formData.category) {
+      setError('Пожалуйста, выберите категорию товара');
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const response = await fetch('http://localhost:3001/products', {
@@ -60,7 +78,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="add-product-page">
+    <div className="add-product-page mobile-add-product">
       <h1>Добавить товар</h1>
       
       <form onSubmit={handleSubmit}>
@@ -96,6 +114,32 @@ const AddProduct = () => {
             value={formData.description}
             onChange={handleChange}
           />
+        </div>
+
+        <div className="form-group category-group">
+          <label>Категория:</label>
+          <div className="category-selector">
+            <div 
+              className="category-selected"
+              onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
+            >
+              {formData.category || 'Выберите категорию'}
+              <span className={`dropdown-arrow ${showCategoryDropdown ? 'open' : ''}`}>▼</span>
+            </div>
+            {showCategoryDropdown && (
+              <div className="category-dropdown">
+                {categories.map(category => (
+                  <div
+                    key={category}
+                    className="category-option"
+                    onClick={() => handleCategorySelect(category)}
+                  >
+                    {category}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="form-group">

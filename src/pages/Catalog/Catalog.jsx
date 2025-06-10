@@ -1,27 +1,43 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import './Catalog.scss';
 
 const Catalog = () => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
   const [sort, setSort] = useState('default');
 
   useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/products');
+        const data = await response.json();
+        
+        const uniqueCategories = [...new Set(data.map(product => product.category))];
+        setCategories(uniqueCategories);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  useEffect(() => {
     const fetchProducts = async () => {
       try {
         let url = 'http://localhost:3001/products';
-        
-        // Apply filters if needed
+
         if (filter !== 'all') {
-          url += `?category=${filter}`;
+          url += `?category=${encodeURIComponent(filter)}`;
         }
         
         const response = await fetch(url);
         let data = await response.json();
         
-        // Apply sorting
         if (sort === 'price-low') {
           data.sort((a, b) => a.price - b.price);
         } else if (sort === 'price-high') {
@@ -42,7 +58,7 @@ const Catalog = () => {
   }, [filter, sort]);
 
   if (loading) {
-    return <div className="loading">Loading...</div>;
+    return <div className="loading">Загрузка...</div>;
   }
 
   return (
@@ -59,10 +75,9 @@ const Catalog = () => {
               onChange={(e) => setFilter(e.target.value)}
             >
               <option value="all">Все категории</option>
-              <option value="tops">Верх</option>
-              <option value="bottoms">Низ</option>
-              <option value="dresses">Юбки</option>
-              <option value="outerwear">Верхняя одежда</option>
+              {categories.map(category => (
+                <option key={category} value={category}>{category}</option>
+              ))}
             </select>
           </div>
           
@@ -73,12 +88,16 @@ const Catalog = () => {
               value={sort}
               onChange={(e) => setSort(e.target.value)}
             >
-              <option value="default">Default</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-              <option value="name">Name: A-Z</option>
+              <option value="default">По умолчанию</option>
+              <option value="price-low">Дешевле</option>
+              <option value="price-high">Дороже</option>
+              <option value="name">A-Z</option>
             </select>
           </div>
+
+          <Link to="/add-product" className="add-product-button">
+            Добавить товар
+          </Link>
         </div>
       </div>
       
@@ -89,7 +108,7 @@ const Catalog = () => {
           ))
         ) : (
           <div className="no-products">
-            <p>No products found in this category.</p>
+            <p>Товары в этой категории не найдены.</p>
           </div>
         )}
       </div>

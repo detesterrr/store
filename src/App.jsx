@@ -8,6 +8,7 @@ import Cart from './pages/Cart/Cart';
 import Account from './pages/Account/Account';
 import AddProduct from './pages/AddProduct/AddProduct';
 import EditProduct from './pages/EditProduct/EditProduct';
+import { OrderProvider } from './context/OrderContext';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import { CartProvider } from './context/CartContext';
 
@@ -15,10 +16,12 @@ import { CartProvider } from './context/CartContext';
 function App() {
   return (
     <CartProvider>
+    <OrderProvider>
     <BrowserRouter>
       <Header />
       <main className="container">
         <Routes>
+          <Route path="/edit-product/:id" element={<EditProduct />} />
           <Route path="/" element={<Home />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/product/:id" element={<Product />} />
@@ -31,6 +34,7 @@ function App() {
       </main>
       <Footer />
     </BrowserRouter>
+    </OrderProvider>
     </CartProvider>
   );
 }

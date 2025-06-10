@@ -4,58 +4,48 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('cart');
-      return saved ? JSON.parse(saved) : [];
-    }
-    return [];
+    const saved = localStorage.getItem('cart');
+    return saved ? JSON.parse(saved) : [];
   });
 
-  // Сохраняем корзину в localStorage при изменении
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const addToCart = (product, selectedSize, quantity = 1) => {
-    setCartItems(prevItems => {
-      // Если товар с таким размером уже есть - увеличиваем количество
-      const existingIndex = prevItems.findIndex(
-        item => item.id === product.id && item.size === selectedSize
+  const addToCart = (product, size = '', quantity = 1) => {
+    setCartItems(prev => {
+      const existing = prev.find(item => 
+        item.id === product.id && item.size === size
       );
-
-      if (existingIndex >= 0) {
-        const newItems = [...prevItems];
-        newItems[existingIndex] = {
-          ...newItems[existingIndex],
-          quantity: newItems[existingIndex].quantity + quantity
-        };
-        return newItems;
+      
+      if (existing) {
+        return prev.map(item =>
+          item.id === product.id && item.size === size
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
       }
-
-      // Новый товар
-      return [
-        ...prevItems,
-        {
-          ...product,
-          size: selectedSize,
-          quantity,
-          addedAt: new Date().toISOString()
-        }
-      ];
+      
+      return [...prev, { 
+        ...product, 
+        size, 
+        quantity,
+        addedAt: new Date().toISOString()
+      }];
     });
   };
 
-  const removeFromCart = (productId, size) => {
-    setCartItems(prevItems =>
-      prevItems.filter(item => !(item.id === productId && item.size === size))
+  const removeFromCart = (productId, size = '') => {
+    setCartItems(prev =>
+      prev.filter(item => !(item.id === productId && item.size === size))
     );
   };
 
-  const updateQuantity = (productId, size, newQuantity) => {
+  const updateQuantity = (productId, size = '', newQuantity) => {
     if (newQuantity < 1) return;
-
-    setCartItems(prevItems =>
-      prevItems.map(item =>
+    
+    setCartItems(prev =>
+      prev.map(item =>
         item.id === productId && item.size === size
           ? { ...item, quantity: newQuantity }
           : item
@@ -67,14 +57,8 @@ export const CartProvider = ({ children }) => {
     setCartItems([]);
   };
 
-  // Считаем общее количество товаров
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-
-  // Считаем общую стоимость
-  const totalPrice = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+  const totalPrice = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   return (
     <CartContext.Provider

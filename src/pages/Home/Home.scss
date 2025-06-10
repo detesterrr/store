@@ -6,7 +6,7 @@
 
 .hero {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-  url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+  url('/images/hero-bg.jpg');
   background-size: cover;
   background-position: center;
   height: 500px;
@@ -16,23 +16,25 @@
   color: white;
 
   &-content {
-    max-width: 500px;
+    max-width: 750px;
     padding: 0 20px;
+    margin-bottom: 20px;
 
     h1 {
       font-size: 48px;
       margin-bottom: 20px;
+      margin-top: 80px;
     }
 
     p {
-      font-size: 20px;
-      margin-bottom: 30px;
+      font-size: 25px;
+      margin-bottom: 75px;
     }
   }
 }
 
 .shop-now {
-  background-color: $accent-color;
+  background-color: red;
   padding: 12px 30px;
   font-size: 16px;
 
@@ -148,5 +150,103 @@
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 30px;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .product-page {
+    grid-template-columns: 1fr;
+    padding: 10px;
+    gap: 20px;
+  }
+  
+  .product-details {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .product-page {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .product-page {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+.no-products {
+  text-align: center;
+  padding: 40px;
+  grid-column: 1 / -1;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .home-page {
+    padding: 20px 0;
+  }
+
+  .hero {
+    height: 300px;
+    margin-bottom: 30px;
+
+    &-content {
+      h1 {
+        font-size: 32px;
+        margin-top: 40px;
+      }
+
+      p {
+        font-size: 18px;
+        margin-bottom: 40px;
+      }
+    }
+  }
+
+  .shop-now,
+  .shop-sale {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
+    h2 {
+      font-size: 24px;
+    }
+  }
+
+  .banner {
+    padding: 40px 0;
+    margin-top: 30px;
+
+    h2 {
+      font-size: 28px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr;
   }
 }

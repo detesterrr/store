@@ -9,9 +9,16 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3001/products?_limit=4');
-        const data = await response.json();
-        setFeaturedProducts(data);
+        const response = await fetch('http://localhost:3001/products');
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        const allProducts = await response.json();
+        
+        const shuffled = [...allProducts].sort(() => 0.5 - Math.random());
+        const randomProducts = shuffled.slice(0, 4);
+        
+        setFeaturedProducts(randomProducts);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {
@@ -23,7 +30,7 @@ const Home = () => {
   }, []);
 
   if (loading) {
-    return <div className="loading">Loading...</div>;
+    return <div className="loading">Загрузка...</div>;
   }
 
   return (
@@ -38,14 +45,20 @@ const Home = () => {
 
       <section className="featured-products">
         <div className="section-header">
-          <h2>Рекомендуемые продукты</h2>
+          <h2>Рекомендуемые товары</h2>
           <a href="/catalog" className="view-all">Показать всё</a>
         </div>
         
         <div className="products-grid">
-          {featuredProducts.map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {featuredProducts.length > 0 ? (
+            featuredProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))
+          ) : (
+            <div className="no-products">
+              <p>Нет рекомендуемых товаров</p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -53,7 +66,7 @@ const Home = () => {
         <div className="banner-content">
           <h2>Летняя распродажа</h2>
           <p>Скидка до 50% на выбранные товары</p>
-          <button className="shop-sale" href="/catalog">КУПИТЬ СЕЙЧАС</button>
+          <a className="shop-sale" href="/catalog">КУПИТЬ СЕЙЧАС</a>
         </div>
       </section>
     </div>

@@ -1,10 +1,25 @@
 {
   "products": [
     {
-      "id": "72e1",
-      "name": "гнида",
-      "price": 2030,
-      "description": "очень супер круто",
+      "id": "74b8",
+      "name": "\"Rachida a bien\" Шарф",
+      "price": 2000,
+      "description": "thks for buying",
+      "image": "https://optim.tildacdn.com/stor3237-6362-4938-b562-316566383939/-/format/webp/72976645.png.webp",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "category": "Аксессуары",
+      "featured": false
+    },
+    {
+      "id": "bdba",
+      "name": "\"Make Out Hell\" Свитер",
+      "price": 5000,
+      "description": "Брендированный зиплок, брендированный курьерский пакет, брендированная карточка по рекомендациям к стирке\nТип нанесения - Вытравка",
       "image": "https://optim.tildacdn.com/stor3739-6464-4630-a365-386361313237/-/format/webp/53591478.png.webp",
       "sizes": [
         "S",
@@ -12,14 +27,38 @@
         "L",
         "XL"
       ],
+      "category": "Верх",
       "featured": false
     },
     {
-      "id": 1,
-      "name": "Футболка",
-      "price": 1990,
-      "sizes": ["S", "M", "L"],
-      "image": "/images/tshirt.jpg"
+      "id": "df07",
+      "name": "Шорты",
+      "price": 3500,
+      "description": "супер класс спорт ",
+      "image": "https://4mma.ru/media/images/16153243076047e494001a71.53966156.temp.png",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "category": "Низ",
+      "featured": false
+    },
+    {
+      "id": "8dea",
+      "name": "\"Railgun\" Худи",
+      "price": 6000,
+      "description": "Уникальная печать \"Вытравка\" на свитере, и вышивка на передней части",
+      "image": "https://optim.tildacdn.com/stor3262-6531-4437-b762-386466613366/-/format/webp/53027015.png.webp",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "category": "Верх",
+      "featured": false
     }
   ]
 }
