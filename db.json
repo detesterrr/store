@@ -31,11 +31,41 @@
       "featured": false
     },
     {
-      "id": "df07",
-      "name": "Шорты",
+      "id": "8dea",
+      "name": "\"Railgun\" Худи",
+      "price": 6000,
+      "description": "Уникальная печать \"Вытравка\" на свитере, и вышивка на передней части",
+      "image": "https://optim.tildacdn.com/stor3262-6531-4437-b762-386466613366/-/format/webp/53027015.png.webp",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "category": "Верх",
+      "featured": false
+    },
+    {
+      "id": "36f4",
+      "name": "\"Russian edition\" Футболка",
       "price": 3500,
-      "description": "супер класс спорт ",
-      "image": "https://4mma.ru/media/images/16153243076047e494001a71.53966156.temp.png",
+      "description": "Перед покупкой уточняйте характеристики и комплектацию у продавца",
+      "image": "https://sun9-74.userapi.com/s/v1/ig2/k0KHsA5u7XGjMteIaRjX0YiFIBZ3-vHxymNaboSWPNbQVyWFjHRfrOZUw3IO08vQdZ8FNQCP2dSYKJ2ulNUCIc8v.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=0-FzRuddyIe1tAPF5te9C2cJrb9m5I2Mbr05-8CExX8&cs=510x510",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "category": "Верх",
+      "featured": false
+    },
+    {
+      "id": "df07",
+      "name": "\"Russian Edition\" Шорты",
+      "price": 3000,
+      "description": "Супер Класс Спорт ",
+      "image": "https://sun9-77.userapi.com/s/v1/ig2/FcqaWfWuzbfXa61ORpxykGfg85frZqk4UZhsfD_qS91RqNBtuXgwXBWofm-Oo1UgcgJ7GtB7THxxQAjMcliHqJ9o.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=w05VYl6GjWm4pSDZM849lmJYJILOmlWzfheOA4wBTA8&cs=510x510",
       "sizes": [
         "S",
         "M",
@@ -46,11 +76,71 @@
       "featured": false
     },
     {
-      "id": "8dea",
-      "name": "\"Railgun\" Худи",
-      "price": 6000,
-      "description": "Уникальная печать \"Вытравка\" на свитере, и вышивка на передней части",
-      "image": "https://optim.tildacdn.com/stor3262-6531-4437-b762-386466613366/-/format/webp/53027015.png.webp",
+      "id": "cb9b",
+      "name": "Часы",
+      "price": 2400000,
+      "description": "ВАУ, ВОТ ЭТО ЦЕНА",
+      "image": "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2022%2F12%2FAlabaster-Industries-New-Timepieces-Drop-1.jpg?q=75&w=800&cbr=1&fit=max",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "category": "Аксессуары",
+      "featured": false
+    },
+    {
+      "id": "d4d2",
+      "name": "Куртка кожанка",
+      "price": 4000,
+      "description": "Ну базовая куртка",
+      "image": "https://avatars.mds.yandex.net/i?id=07a786aa36b2b645f863194b936f5d6d9723a9db-12248557-images-thumbs&n=13",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "category": "Верхняя одежда",
+      "featured": false
+    },
+    {
+      "id": "e68e",
+      "name": "\"Koe no katachi\" Зип-худи",
+      "price": 9000,
+      "description": "1010011 1101111 1101101 1100101 1110100 1101001 1101101 1100101 1110011 100000 1110100 1101000 1100101 100000 1100001 1101110 1110011 1110111 1100101 1110010 100000 1101001 1110011 100000 1100001 1110011 100000 1110011 1101001 1101101 1110000 1101100 1100101 100000 1100001 1110011 100000 1101100 1100101 1100001 1110010 1101110 1101001 1101110 1100111 100000 1110100 1101111 100000 1101100 1101001 1110011 1110100 1100101 1101110",
+      "image": "https://static.tildacdn.com/stor3366-3663-4664-a131-646338353230/24030602.png",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "category": "Верх",
+      "featured": false
+    },
+    {
+      "id": "8ad4",
+      "name": "Джинсы",
+      "price": 3000,
+      "description": "Классические синие джинсы",
+      "image": "https://avatars.mds.yandex.net/i?id=3b883c31a1d861088bb8a3fdb1303dfa_l-4745534-images-thumbs&n=13",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "category": "Низ",
+      "featured": false
+    },
+    {
+      "id": "18a6",
+      "name": "raze tour 2023 Футболка",
+      "price": 3000,
+      "description": "Gen'ei Ryodan 幻影旅団 also known as Spiders is a Class A criminal organization of 13 people, originated in the City of the Fallen Star Meteor.",
+      "image": "https://static.tildacdn.com/stor3031-3661-4433-a137-646464376465/83955742.png",
       "sizes": [
         "S",
         "M",
